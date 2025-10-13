@@ -1,0 +1,56 @@
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Register Page</title>
+	<link href="../static/style (sign up).css" rel="stylesheet" type="text/css">
+</head>
+
+<body>
+	<header>
+        <div class="logo"><b>MindCare</b></div>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="Sign in.html">Log in / Sign up</a></li>
+                <li><a href="#">Contact Us</a></li>
+            </ul>
+        </nav>
+    </header>
+	
+	<banner>
+		<div class="login-container">
+			<h2>Create an account</h2>
+			
+			<div class="alt-login">
+				<button><img src="Image/3d-logo-of-apple-iphone-free-png.webp" alt="">Continue with Apple</button>
+				<button><img src="Image/Google-Symbol.png" alt="">Continue with Google</button>
+    		</div>
+			
+			<p>-------------or-------------</p>
+			
+			<form action="/submit-login" method="POST">
+				<label for="email">Email</label>
+				<input type="email" id="email" name="email" placeholder="Enter your email" required>
+
+				<label for="password">Password</label>
+				<input type="password" id="password" name="password" placeholder="Password" required>
+				
+				<label for="confirm-password">Confirm Password</label>
+				<input type="confirm-password" id="confirm-password" name="confirm-password" placeholder="Confirm Password" required>
+
+				<button type="submit" >Sign up</button>
+			</form>
+			<div class="log-in">
+				<p>Already have an account?<a href="Sign in.html">Log in</a></p>
+			</div>
+		</div>
+	</banner>
+	
+	<footer>
+        <br>
+        <p>© 2025 MindCare. All rights reserved.</p>
+    </footer>
+
+</body>
+</html>
