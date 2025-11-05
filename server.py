@@ -11,7 +11,7 @@ CORS(app, origins=["*"])
 
 # Initialize mental health LLM and chain
 print("[INFO] Initializing mental health model...")
-model = Ollama(model="gemma3:1b")
+model = Ollama(model="llama3.2:1b")
 
 template = """
 You are MindCare — a friendly, empathetic AI mental health companion.
