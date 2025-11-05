@@ -2,8 +2,9 @@
 from flask import Flask, request, jsonify, send_from_directory
 from flask_cors import CORS
 from langchain_community.llms import Ollama
-from langchain.prompts import ChatPromptTemplate
+from langchain_core.prompts import ChatPromptTemplate
 from vector import retriever
+
 
 app = Flask(__name__, static_folder="static", template_folder="templates")
 CORS(app, origins=["*"])
@@ -13,7 +14,11 @@ print("[INFO] Initializing mental health model...")
 model = Ollama(model="gemma3:1b")
 
 template = """
-You are a compassionate mental health therapist.
+You are MindCare — a friendly, empathetic AI mental health companion.
+
+Always reply in a **brief and human-like** way (1–2 sentences only).
+Use natural tone, like you’re gently talking to a close friend.
+Avoid long paragraphs, lists, or clinical explanations.
 
 Here are some relevant previous Q&A excerpts:
 {reviews}
@@ -21,11 +26,13 @@ Here are some relevant previous Q&A excerpts:
 Here is the user's question:
 {question}
 """
+
 prompt = ChatPromptTemplate.from_template(template)
 chain = prompt | model
 print("[INFO] Model and chain ready.")
 
 @app.route("/ask", methods=["POST"])
+
 def ask():
     data = request.get_json(force=True)
     question = data.get("question", "").strip()
@@ -40,6 +47,8 @@ def ask():
         return jsonify({"answer": result})
     except Exception as e:
         return jsonify({"error": str(e)}), 500
+
+
 
 @app.route("/")
 def index():

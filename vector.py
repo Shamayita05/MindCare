@@ -29,4 +29,4 @@ if add_documents:
         documents.append(document)
     vector_store.add_documents(documents=documents, ids=ids)
 
-retriever = vector_store.as_retriever(search_kwargs={"k": 3})
+retriever = vector_store.as_retriever(search_kwargs={"k": 1})

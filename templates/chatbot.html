@@ -1,98 +1,135 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>MindCare Chatbot</title>
-  <link rel="stylesheet" href="../static/style (chatbot).css">
+  <link rel="stylesheet" href="../static/style (chatbot).css" />
 </head>
+
 <body>
 
+  <!-- ===== HEADER ===== -->
   <header>
     <div class="logo"><b>MindCare</b></div>
     <nav>
       <ul>
         <li><a href="index.html">Home</a></li>
         <li><a href="Sign in.html">Log in / Sign up</a></li>
-        <li><a href="#">Contact Us</a></li>
+        <li><a href="contact.html">Contact Us</a></li>
       </ul>
     </nav>
   </header>
 
-   
+  <!-- ===== CHAT AREA ===== -->
   <div class="chat-container">
     <div class="chat-messages" id="chatMessages">
       <div class="bot-message message">
-      Hello🤖! I’m your AI Driven Mental Health Companion. How can I help you?😊
+        Hello🤖! I’m your AI Driven Mental Health Companion. How can I help you?😊
       </div>
     </div>
+
     <div class="chat-input">
       <input type="text" id="userInput" placeholder="Type your message..." />
       <button onclick="sendMessage()">Send</button>
     </div>
   </div>
 
- <script>
-    document.getElementById("userInput").addEventListener("keydown", function (event) {
-      if (event.key === "Enter") {
-        event.preventDefault();  // avoid new line
-        sendMessage();           // trigger message send
-      }
-    });
+  <!-- ===== MAIN SCRIPT ===== -->
+<script>
+  // Handle Enter key press
+  document.getElementById("userInput").addEventListener("keydown", function (event) {
+    if (event.key === "Enter") {
+      event.preventDefault();
+      sendMessage();
+    }
+  });
 
-    // ✅ Your chatbot logic
-    async function sendMessage() {
-      const input = document.getElementById("userInput");
-      const message = input.value.trim();
-      if (!message) return;
+  // ===== Chatbot logic =====
+  async function sendMessage() {
+    const input = document.getElementById("userInput");
+    const message = input.value.trim();
+    if (!message) return;
 
-      const messagesDiv = document.getElementById("chatMessages");
+    const messagesDiv = document.getElementById("chatMessages");
 
-      // show user message
-      const userMsgDiv = document.createElement("div");
-      userMsgDiv.className = "user-message message";
-      userMsgDiv.textContent = message;
-      messagesDiv.appendChild(userMsgDiv);
-      input.value = "";
+    // Show user message
+    const userMsgDiv = document.createElement("div");
+    userMsgDiv.className = "user-message message";
+    userMsgDiv.textContent = message;
+    messagesDiv.appendChild(userMsgDiv);
+    input.value = "";
+    messagesDiv.scrollTop = messagesDiv.scrollHeight;
 
+    try {
+      // Show typing indicator
+      const typingDiv = document.createElement("div");
+      typingDiv.className = "bot-message message";
+      typingDiv.textContent = "Typing...";
+      messagesDiv.appendChild(typingDiv);
       messagesDiv.scrollTop = messagesDiv.scrollHeight;
 
-      try {
-          const res = await fetch("http://127.0.0.1:5000/ask", {
-               method: "POST",
-               headers: {"Content-Type": "application/json"},
-               body: JSON.stringify({ question: message })
-          });
+      // Send message to backend
+      const res = await fetch("http://127.0.0.1:5000/ask", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ question: message })
+      });
 
-        const data = await res.json();
+      const data = await res.json();
+      messagesDiv.removeChild(typingDiv);
 
-        // show bot message
-        const botMsgDiv = document.createElement("div");
-        botMsgDiv.className = "bot-message message";
-        // clean & format the chatbot's text
-        const formattedAnswer = (data.answer || "Sorry, I couldn’t process that.")
-          .replace(/\*\*/g, "")   // remove bold markers **
-          .replace(/\*/g, "")     // remove italic markers *
-          .replace(/\n/g, "<br>"); // convert newlines to line breaks
+      // Display bot message
+      const botMsgDiv = document.createElement("div");
+      botMsgDiv.className = "bot-message message";
 
-        botMsgDiv.innerHTML = formattedAnswer; // use innerHTML so <br> works
-        messagesDiv.appendChild(botMsgDiv);
+      // Clean formatting & prepare for typing
+      const formattedAnswer = (data.answer || "Sorry, I couldn’t process that.")
+        .replace(/\*\*/g, "")
+        .replace(/\*/g, "")
+        .replace(/<br\s*\/?>/g, "\n") // handle existing <br> tags
+        .replace(/\n/g, "\n"); // keep newlines for now
 
+      messagesDiv.appendChild(botMsgDiv);
 
-        messagesDiv.scrollTop = messagesDiv.scrollHeight;
-      } catch (err) {
-        const errorDiv = document.createElement("div");
-        errorDiv.className = "bot-message message";
-        errorDiv.textContent = "⚠️ Error connecting to chatbot.";
-        messagesDiv.appendChild(errorDiv);
+      // Typewriter animation
+      let i = 0;
+      function typeEffect() {
+        if (i < formattedAnswer.length) {
+          botMsgDiv.textContent += formattedAnswer.charAt(i);
+          i++;
+          messagesDiv.scrollTop = messagesDiv.scrollHeight;
+          setTimeout(typeEffect, 20);
+        } else {
+          // Convert newlines to <br> after typing ends
+          botMsgDiv.innerHTML = botMsgDiv.textContent.replace(/\n/g, "<br>");
+        }
       }
-    }
-  </script>
+      typeEffect();
 
+    } catch (err) {
+      const errorDiv = document.createElement("div");
+      errorDiv.className = "bot-message message";
+      errorDiv.textContent = "⚠️ Error connecting to chatbot.";
+      messagesDiv.appendChild(errorDiv);
+    }
+  }
+
+  // ===== Warm-up fetch (reduce first message delay) =====
+  window.addEventListener("load", () => {
+    fetch("http://127.0.0.1:5000/ask", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ question: "Hello" })
+    });
+  });
+</script>
+
+  <!-- ===== FOOTER ===== -->
   <footer>
-        <br>
-        <p>© 2025 MindCare. All rights reserved.</p>
-    </footer>
+    <br />
+    <p>© 2025 MindCare. All rights reserved.</p>
+  </footer>
 
 </body>
 </html>

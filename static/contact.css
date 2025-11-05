@@ -1,0 +1,180 @@
+/* Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Caveat:wght@400;600&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    text-decoration: none;
+    font-family: 'Poppins', sans-serif;
+}
+
+body {
+     font-family: 'Caveat', cursive; 
+     font-size: 20px;
+     background-color: #f4f4f9;
+     color: #333;
+}
+
+/* Header */
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 18px 5%;
+    background: #fff;
+    box-shadow: 0px 4px 6px #5a67d8;
+}
+
+.logo {
+    font-size: 45px;
+    font-weight: 600;
+    color: #5a67d8;
+    margin-right: auto; 
+}
+
+nav ul {
+    list-style: none;
+    display: flex;
+    gap: 35px;
+}
+
+nav ul li a {
+    color: #333;
+    font-weight: 500;
+    transition: 0.3s;
+}
+
+nav ul li a:hover,
+nav ul li a.active {
+    color: #5a67d8;
+}
+
+/* Contact Section */
+.contact-section {
+    padding: 60px 5%;
+    text-align: center;
+}
+
+.contact-section h1 {
+    font-family: "Garamond", "Palatino Linotype", "Book Antiqua", serif;
+    font-size: 70px;
+    margin-bottom: 10px;
+}
+
+.contact-section p {
+    font-size: 25px;
+    margin-bottom: 40px;
+}
+
+/* Contact Cards */
+.contact-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 35px;
+}
+
+.contact-card {
+    background: #fff;
+    width: 320px;
+    padding: 25px;
+    border-radius: 12px;
+    box-shadow: 0px 4px 10px rgba(90, 103, 216, 0.2);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    text-align: left;
+    border-top: 5px solid #5a67d8;
+}
+
+.contact-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0px 8px 18px rgba(90, 103, 216, 0.35);
+}
+
+.contact-card h3 {
+    color: #5a67d8;
+    /* font-family: 'Comfortaa', sans-serif; */
+    font-size: 20px;
+    margin-bottom: 10px;
+}
+
+.contact-card p {
+    font-size: 16px;
+    line-height: 1.6;
+    margin-bottom: 10px;
+}
+
+/* Query Section */
+.query-section {
+    padding: 70px 5%;
+    background: #fff;
+    text-align: center;
+}
+
+.query-section h2 {
+    font-size: 50px;
+    font-family: "Garamond", "Palatino Linotype", "Book Antiqua", serif;
+    color: #5a67d8;
+    margin-bottom: 20px;
+}
+
+.query-section p {
+    font-size: 20px;
+    margin-bottom: 35px;
+}
+
+.query-form {
+    display: flex;
+    justify-content: center;
+}
+
+.query-form form {
+    display: flex;
+    flex-direction: column;
+    width: 1300px;
+    background: #f4f4f9;
+    padding: 50px;
+    border-radius: 15px;
+    box-shadow: 0px 4px 10px rgba(90, 103, 216, 0.2);
+}
+
+.query-form input,
+.query-form textarea {
+    margin-bottom: 15px;
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    font-size: 15px;
+    outline: none;
+}
+
+.query-form input:focus,
+.query-form textarea:focus {
+    border-color: #5a67d8;
+}
+
+.send-btn {
+    background: #5a67d8;
+    color: #fff;
+    border: none;
+    padding: 12px;
+    border-radius: 8px;
+    font-weight: 600;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+.send-btn:hover {
+    background: #434190;
+}
+
+/* Footer */
+footer {
+    text-align: center;
+    padding: 15px;
+    background: #4d4a4a;
+    color: #fff;
+    font-size: 18px;
+}

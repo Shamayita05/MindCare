@@ -4,10 +4,13 @@ from langchain_core.prompts import ChatPromptTemplate
 from vector import retriever
 
 # Mental health model
-model = OllamaLLM(model="gemma3:1b")
+model = OllamaLLM(model="llama3.2:1b")
 
 template = """
-You are a compassionate mental health therapist.
+You are MindCare — an empathetic and friendly AI mental health companion.
+
+Your job is to respond in a **short, natural, and human-like** way (1–2 sentences max).
+Speak like a caring friend, not a formal therapist.
 
 Here are some relevant Q&A excerpts from previous conversations:
 {reviews}
@@ -15,6 +18,7 @@ Here are some relevant Q&A excerpts from previous conversations:
 Here is the user's question to answer:
 {question}
 """
+
 prompt = ChatPromptTemplate.from_template(template)
 chain = prompt | model
 
