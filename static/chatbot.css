@@ -4,7 +4,6 @@
 
 * {
     margin: 0;
-    padding: 0;
     box-sizing: border-box;
     text-decoration: none;
     font-family: 'Poppins', sans-serif;
@@ -140,6 +139,7 @@ h2 {
       flex-direction: column;
       height: 80vh;
       overflow: hidden;
+
     }
 
     /* Chat messages area */
@@ -223,3 +223,4 @@ footer {
     padding: 5px;
     color: #4d4a4a;
 }
+

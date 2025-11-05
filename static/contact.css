@@ -19,6 +19,8 @@ body {
 
 /* Header */
 header {
+    position: fixed;
+    width: 100%;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -53,7 +55,7 @@ nav ul li a.active {
 
 /* Contact Section */
 .contact-section {
-    padding: 60px 5%;
+    padding: 150px 5%;
     text-align: center;
 }
 
@@ -108,7 +110,7 @@ nav ul li a.active {
 /* Query Section */
 .query-section {
     padding: 70px 5%;
-    background: #fff;
+    background: #ebedff;
     text-align: center;
 }
 
@@ -177,4 +179,26 @@ footer {
     background: #4d4a4a;
     color: #fff;
     font-size: 18px;
+}
+
+/* Floating icon */
+#chatbot-icon {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    width: 90px;
+    height: 90px;
+    cursor: pointer;
+    z-index: 9999;
+    border-radius: 50%;
+    background-color: #c5cbfe; /* or any color */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+}
+
+#chatbot-icon img {
+    width: 80%;
+    height: 80%;
 }

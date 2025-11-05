@@ -18,12 +18,15 @@ body {
 }
 
 header {
+    position: fixed;
+    width: 100%;
     display: flex;
     justify-content: space-between;
     align-items: center; 
     padding: 18px 5%;
     background: #fff;
     box-shadow: 0px 4px 6px #5a67d8;
+    background-color: #fff;
 }
 
 .logo {
@@ -58,12 +61,18 @@ nav ul li a.active {
     justify-content: space-between;
     align-items: center;
     padding: 135px 5%;
+    background: 
+        linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)),
+        url("/templates/Image/nature 2.webp") center/cover no-repeat;
+    opacity: 1;  /* adjust transparency */
+    z-index: -1;
 }
 
 .hero-content {
     font-size: 30px;
     text-align: left; 
-    max-width: 50%;
+    max-width: 100%;
+    color: #ffffff;
 }
 
 .chat-btn {
@@ -83,7 +92,7 @@ nav ul li a.active {
 }
 
 .hero img {
-    width: 800px;
+    width: 900px;
 }
 
 
@@ -93,7 +102,7 @@ section {
 }
 
 section.about, section.how-it-works, section.privacy{
-    background-color: #ffffff;
+    background-color: #ebedff;
     padding: 10px 5%;
     
 }
@@ -101,17 +110,16 @@ section.about, section.how-it-works, section.privacy{
 h1{
     font-family: "Garamond", "Palatino Linotype", "Book Antiqua", serif;
     font-size: 70px;
+    text-align: right;
 }
 
 h2 {
     text-align: center;
     font-size: 50px;
-    /* font-family: 'Caveat', cursive; */
     font-family: "Garamond", "Palatino Linotype", "Book Antiqua", serif;
     margin-bottom: 25px;
     color: #5a67d8;
 }
-
 
 .feature-container {
     display: flex;
@@ -147,4 +155,27 @@ footer {
     color: #fff;
     font-size: 18px;
 }
+
+/* Floating icon */
+#chatbot-icon {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    width: 90px;
+    height: 90px;
+    cursor: pointer;
+    z-index: 9999;
+    border-radius: 50%;
+    background-color: #c5cbfe; /* or any color */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+}
+
+#chatbot-icon img {
+    width: 80%;
+    height: 80%;
+}
+
 
