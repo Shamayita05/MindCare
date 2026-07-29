@@ -1,8 +1,8 @@
 # MindCare – AI Mental Health Chatbot
 
-MindCare is an AI-powered mental health chatbot that provides empathetic and context-aware responses to users. It uses Retrieval-Augmented Generation (RAG) to retrieve relevant information from a mental health dataset and generate meaningful responses using a locally running Large Language Model (LLM).
+MindCare is a Retrieval-Augmented Generation (RAG) based AI mental health chatbot that provides empathetic and context-aware responses to users. It retrieves relevant information from a mental health question-answer dataset and generates natural responses using a locally running Large Language Model (LLM).
 
-This project was built as a learning project to explore Generative AI, LangChain, vector databases, and chatbot development.
+This project was built to explore Generative AI, LangChain, vector databases, and chatbot development.
 
 ---
 
